@@ -1,4 +1,5 @@
 
+import java.util.Locale;
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -10,9 +11,11 @@ import java.io.FileNotFoundException;
             f = new File("words.txt");
             int twoLetter = twoLetter();
             int tiedLongestWord=tiedLongestWord();
+            int palindromeCount=palindrome();
 
             System.out.println(twoLetter);
             System.out.println(tiedLongestWord);
+            System.out.println(palindromeCount);
         }
 
 
@@ -54,9 +57,36 @@ import java.io.FileNotFoundException;
 
                     return tiedLongestWord;
         }
+
+            private static boolean isItAPalindrome(String wordInList) {
+                int leftIndex = 0;
+                int rightIndex = wordInList.length() - 1;
+                while (leftIndex < rightIndex) {
+                    if (wordInList.charAt(leftIndex) != wordInList.charAt(rightIndex)) {
+                        return false;
+                    }
+
+                    leftIndex++;
+                    rightIndex--;
+
+                }
+                return true;
+            }
+
             public static int palindrome() throws FileNotFoundException {
                 s = new Scanner(f);
-                return 0;
+
+                int palindromeCount = 0;
+                while (s.hasNext()) {
+                    if (isItAPalindrome(s.next())) {
+                        palindromeCount++;
+                    }
+
+
+                }
+
+                return palindromeCount;
+
             }
 
 }
